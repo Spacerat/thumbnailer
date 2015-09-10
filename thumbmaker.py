@@ -49,20 +49,24 @@ def get_thumb_size(real_size, render_size):
 def process_img(root, img, base_path):
     requests.get(join(root, img['src']), stream=True)
     r = requests.get(join(root, img['src']), stream=True)
-    localpath = make_path_for_file(base_path, img['src'])
-    save_image(r, localpath)
-    image  = Image.open(localpath)
 
-    real_size = image.size
-    render_size = (try_int(img.get('width', None)), try_int(img.get('height', None)))
-    thumb_size = get_thumb_size(real_size, render_size)
-    if thumb_size is not None:
-        image.thumbnail(thumb_size, Image.ANTIALIAS)
-        thumbpath = make_path_for_file(base_path, 'thumbnails', img['src'])
-        image.save(thumbpath)
-        return join('thumbnails', img['src'])
-    else:
-        return None
+    try:
+        localpath = make_path_for_file(base_path, 'images', img['src'])
+        save_image(r, localpath)
+        image  = Image.open(localpath)
+
+        real_size = image.size
+        render_size = (try_int(img.get('width', None)), try_int(img.get('height', None)))
+        thumb_size = get_thumb_size(real_size, render_size)
+        if thumb_size is not None:
+            image.thumbnail(thumb_size, Image.ANTIALIAS)
+            thumbpath = make_path_for_file(base_path, 'thumbnails', img['src'])
+            image.save(thumbpath)
+            return join('thumbnails', img['src'])
+        else:
+            return None
+    finally:
+        shutil.rmtree(os.path.realpath(join(base_path, 'images')))
 
 def make_path_for_file(*components):
     path = os.path.realpath(join(*components))
