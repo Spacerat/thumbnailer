@@ -49,10 +49,14 @@ def get_thumb_size(real_size, render_size):
 def process_img(root, img, base_path):
     requests.get(join(root, img['src']), stream=True)
     r = requests.get(join(root, img['src']), stream=True)
-
+    if r.status_code > 399:
+        return None
     try:
         localpath = make_path_for_file(base_path, 'images', img['src'])
-        save_image(r, localpath)
+        try:
+            save_image(r, localpath)
+        except ValueError:
+            return None
         image  = Image.open(localpath)
 
         real_size = image.size
