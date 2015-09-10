@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+    <title>Static Thumbnail Maker</title>
+</head>
+<body>
+    <div class="main">
+        <header>
+            <h1>Static Thumbnail Maker</h1><h2>Make thumbnails for every image on your static website, quick.</h2>
+        </header>
+        <div class="stuff">
+            <form action="api/process_site" method="get">
+                <label for="root">① Give us your website name</label>
+                <input required="required" name="root" type="url" id="root" placeholder="http://example.com" />
+                <br />
+                <label for="pages">② What are the URLs of the pages you want to process?</label><br>
+                <textarea name="pages" id="pages" rows="8" required="required"
+        placeholder="index
+shows
+gallery"></textarea>
+                <br>
+                <button type="submit">Process Page and Download ZIP</button> <span>Don't worry, it can take a while...</span>
+            </form>
+            <div class="info">
+                <h3>What happens next?</h3>
+                <p>Static Thumbnail Maker will download your website and all images in <code>&lt;img&gt;</code> tags. If
+                    any image files are larger than the width or height specified inside their tag, they will be downsized
+                    and placed in a 'thumbnails' folder. In your HTML, the <code>&lt;img src="..."&gt;</code> attribute
+                    will be edited to reflect the new thumbnail path. </p>
+                <p>Eventually your browser will download the new code and thumbnails in a zip, and you can go ahead and
+                    upload them all to your server. Job done!</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

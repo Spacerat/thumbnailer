@@ -1,0 +1,54 @@
+h1, h2, body {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+
+
+h1, h2, body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div.stuff {
+    margin-top: 30px;
+}
+div.info {
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+label, button, input {
+    font-size: 25px;
+}
+input {
+    height: 25px;
+    margin-left: 0.5em;
+    border: 1px #888 solid;
+    border-radius: 5px;
+    padding:5px;
+    width: 436px;
+}
+button[type=submit] {
+    padding:5px 15px;
+    margin-top: 15px;
+    margin-right: 15px;
+    background:#fff;
+    border: 1px #888 solid;
+    cursor:pointer;
+    border-radius: 5px;
+}
+
+
+#pages {
+    width: 100%;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+div.main {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 8px;
+}
