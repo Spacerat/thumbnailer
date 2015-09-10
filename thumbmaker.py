@@ -1,14 +1,22 @@
+from __future__ import print_function, division
+
 from bs4 import BeautifulSoup
 import requests
 import requests_cache
 import shutil
 import os
-from urllib.parse import urlparse, urljoin
+
+try:
+    from urllib.parse import urlparse, urljoin
+except ImportError:
+    from urlparse import urlparse, urljoin
+
 from os.path import join
 from PIL import Image
 import tempfile
 import argparse
-import time
+
+
 
 requests_cache.install_cache('.cache')
 
